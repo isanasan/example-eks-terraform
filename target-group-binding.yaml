@@ -1,0 +1,18 @@
+apiVersion: elbv2.k8s.aws/v1alpha1
+kind: TargetGroupBinding
+metadata:
+  name: sample-tgb
+  namespace: sample-eks
+spec:
+  serviceRef:
+    name: sample-eks-service-target
+    port: 80
+  targetGroupARN: arn:aws:elasticloadbalancing:ap-northeast-1:009578387149:targetgroup/hoge-eks/da744d8fb6ff1d0f
+  targetType: ip
+  networking:
+    ingress:
+    - from:
+      - securityGroup:
+          groupID: sg-017567c5b8b084ca7
+      ports:
+      - protocol: TCP
